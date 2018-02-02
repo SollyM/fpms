@@ -1,0 +1,172 @@
+[17-Jan-2018 08:02:04 America/New_York] PHP Warning:  require(/fpms/inc/config.inc.php): failed to open stream: No such file or directory in /home/johannes/public_html/fpms/auth/doLogin.php on line 7
+[17-Jan-2018 08:02:04 America/New_York] PHP Fatal error:  require(): Failed opening required '/fpms/inc/config.inc.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/johannes/public_html/fpms/auth/doLogin.php on line 7
+[17-Jan-2018 08:02:40 America/New_York] PHP Warning:  require(/fpms/inc/config.inc.php): failed to open stream: No such file or directory in /home/johannes/public_html/fpms/auth/doLogin.php on line 7
+[17-Jan-2018 08:02:40 America/New_York] PHP Fatal error:  require(): Failed opening required '/fpms/inc/config.inc.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/johannes/public_html/fpms/auth/doLogin.php on line 7
+[17-Jan-2018 08:05:59 America/New_York] PHP Warning:  require(___classes/classes.php): failed to open stream: No such file or directory in /home/johannes/public_html/fpms/auth/doLogin.php on line 8
+[17-Jan-2018 08:05:59 America/New_York] PHP Fatal error:  require(): Failed opening required '___classes/classes.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/johannes/public_html/fpms/auth/doLogin.php on line 8
+[17-Jan-2018 08:07:01 America/New_York] PHP Warning:  require(___classes/classes.php): failed to open stream: No such file or directory in /home/johannes/public_html/fpms/auth/doLogin.php on line 8
+[17-Jan-2018 08:07:01 America/New_York] PHP Fatal error:  require(): Failed opening required '___classes/classes.php' (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/johannes/public_html/fpms/auth/doLogin.php on line 8
+[17-Jan-2018 08:08:11 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[17-Jan-2018 08:08:11 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[22-Jan-2018 09:53:51 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(31): frmLogin->checkLogin('SollyM', 'M@b010k@!')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[22-Jan-2018 09:54:15 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(41): frmLogin->checkLogin('SollyM', 'M@b010k@!')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[22-Jan-2018 09:55:33 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(41): frmLogin->checkLogin('SollyM', 'M@b010k@!')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[22-Jan-2018 09:56:04 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[22-Jan-2018 09:56:04 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[22-Jan-2018 09:56:04 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(31): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 03:39:56 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 03:39:56 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 03:39:56 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(41): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:13:13 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:13:13 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:13:13 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:14:43 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:14:43 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:14:43 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(40): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:14:57 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:14:57 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:14:57 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(40): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:16:26 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:16:26 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:16:26 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:29:22 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:29:22 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:29:22 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:36
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(36): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 36
+[23-Jan-2018 04:35:15 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:35:15 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:35:15 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:38
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(38): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 38
+[23-Jan-2018 04:36:27 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:36:27 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:36:27 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:38
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(38): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 38
+[23-Jan-2018 04:37:19 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:37:19 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:37:55 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:37:55 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:39:55 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:39:55 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:39:55 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:40:51 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('SollyM', 'M@b010k@!')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:41:33 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:41:33 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:41:33 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(54): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:42:10 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:42:10 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:42:10 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:42:16 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:42:16 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:42:16 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:42:17 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:42:17 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:42:17 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:35
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(35): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 35
+[23-Jan-2018 04:43:09 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:43:09 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:43:09 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:43:12 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:43:12 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:43:12 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'johannes_fpms.refRoles' doesn't exist' in /home/johannes/public_html/fpms/classes/frmlogin.php:33
+Stack trace:
+#0 /home/johannes/public_html/fpms/classes/frmlogin.php(33): PDOStatement->execute()
+#1 /home/johannes/public_html/fpms/auth/doLogin.php(43): frmLogin->checkLogin('', '')
+#2 {main}
+  thrown in /home/johannes/public_html/fpms/classes/frmlogin.php on line 33
+[23-Jan-2018 04:43:39 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:43:39 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 04:49:42 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 04:49:42 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
+[23-Jan-2018 05:03:40 America/New_York] PHP Notice:  Undefined index: myusername in /home/johannes/public_html/fpms/auth/doLogin.php on line 11
+[23-Jan-2018 05:03:40 America/New_York] PHP Notice:  Undefined index: mypassword in /home/johannes/public_html/fpms/auth/doLogin.php on line 12
