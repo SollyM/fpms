@@ -2,8 +2,9 @@
 include_once "../inc/sessions.php";
 
 $pageName = "Invoice Management";
+include_once '../inc/permissions.inc.php';
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 $mode = isset($_POST['mode']) ? $_POST['mode'] : "view";

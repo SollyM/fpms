@@ -1,10 +1,11 @@
 <?php 
 		$pageName = "Policy Number Setup";
-//		$qryGet = "SELECT T.PolicyPlanId, T.PlanName, DefaultPremium, IsActive, P.InUse FROM `tblpolicyplans` T LEFT JOIN (SELECT PolicyPlanId, COUNT(PolicyPlanId) InUse FROM tblpolicies GROUP BY PolicyPlanId) P ON P.PolicyPlanId = T.PolicyPlanId";
+    include_once '../inc/permissions.inc.php';
+    //		$qryGet = "SELECT T.PolicyPlanId, T.PlanName, DefaultPremium, IsActive, P.InUse FROM `tblpolicyplans` T LEFT JOIN (SELECT PolicyPlanId, COUNT(PolicyPlanId) InUse FROM tblpolicies GROUP BY PolicyPlanId) P ON P.PolicyPlanId = T.PolicyPlanId";
 //		$lblNameColumn = "Title";
 
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 

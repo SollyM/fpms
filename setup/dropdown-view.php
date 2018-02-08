@@ -3,7 +3,7 @@ include_once "../inc/sessions.php";
 
 $type = $_REQUEST["type"];
 
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 
@@ -41,12 +41,23 @@ switch ($type) {
         $menuItem = "menuSettings";
         $subMenuItem = "menuRelationships";
         break;
+        
+    case 'errorlevel':
+        $pageName = "Error Level Setup";
+        
+        $t = new ErrorLevel;
+
+        $lblNameColumn = "ErrorLevel";
+        $openMenu = true;
+        $menuItem = "menuSettings";
+        $subMenuItem = "menuErrorLevels";
+        break;
 
 	default:
 		$pageName = "Setup Error";
     break;
 }
-
+include_once '../inc/permissions.inc.php';
 require_once "../inc/header.inc.php";
 
 $results = $t->GetAll();

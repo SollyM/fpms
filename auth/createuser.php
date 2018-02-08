@@ -1,5 +1,5 @@
 <?php
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 //Pull username, generate new ID and hash password

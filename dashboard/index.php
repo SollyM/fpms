@@ -3,7 +3,7 @@ $pageName = "Dashboard";
 include_once "../inc/sessions.php";
 
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 $db = new DbConn;

@@ -4,7 +4,7 @@ include_once "../inc/sessions.php";
 require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
-$pagePath = $_SERVER["PHP_SELF"];
+$pagePath = $_SERVER["REQUEST_URI"];
 
 $up = new UserPermission;
 $permissions = $up->GetByRolePath($roleId, $pagePath);
@@ -22,8 +22,6 @@ if (isnull($permissions[0],'') == '') {
 }
 
 if ($up->CanView == 0) {
-    $_SESSION["Permissions"] = "You don't have access to this page. Please check with the System Administrator.";
+    $_SESSION["Permissions"] = "You don't have access to {$pageName} page. Please check with the System Administrator.";
     header('location:../dashboard');
-    echo $_SESSION["Permissions"];
-    echo "<br>Done.<br>";
 }

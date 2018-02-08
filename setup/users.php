@@ -1,12 +1,12 @@
 <?php 
 $pageName = "Users";
+include_once '../inc/permissions.inc.php';
+
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
-
 try {
-    
     $db = new DbConn;
     $stmt = $db->conn->prepare("SELECT U.*, R.RoleName FROM tblusers U LEFT JOIN refroles R ON R.RoleId = U.RoleId");
     $stmt->execute();
@@ -16,7 +16,9 @@ try {
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php echo $pageName ?></h3>
+        <?php if ($up->CanCreate) { ?>
         <a href="user-details.php?mode=add" class="btn btn-primary pull-right">Add New</a>
+        <?php } ?>
       </div>
       <!-- /.box-header -->
       <div class="box-body">        

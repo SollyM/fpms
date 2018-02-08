@@ -1,6 +1,7 @@
 <?php
 class UserPermission extends ActionLog {
     private $tblName = "tblUserPermissions";
+    public $Id = -1;
     public $CanView = 0;
     public $CanCreate = 0;
     public $CanUpdate = 0;
@@ -16,6 +17,7 @@ class UserPermission extends ActionLog {
         $results = $stmt->fetch();
 
         if ($results[0] > 0) {
+            $Id = $results["UserPermissionId"];
             $CanView = $results["CanView"];
             $CanCreate = $results["CanCreate"];
             $CanUpdate = $results["CanUpdate"];
@@ -35,6 +37,14 @@ class UserPermission extends ActionLog {
         return $results;
     }
     
+    public function GetByRoleId($roleId) {
+        $stmt = $this->conn->prepare("SELECT * FROM tblUserPermissions WHERE RoleId = :roleId AND PagePath = :pagePath");
+        $stmt->bindParam(':roleId', $roleId);
+        $stmt->bindParam(':pagePath', $pagePath);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function GetByRolePath($roleId, $pagePath){
         $stmt = $this->conn->prepare("SELECT * FROM tblUserPermissions WHERE RoleId = :roleId AND PagePath = :pagePath");
         $stmt->bindParam(':roleId', $roleId);
@@ -43,6 +53,7 @@ class UserPermission extends ActionLog {
         $results = $stmt->fetch();
 
         if (!is_null($results[0])) {
+            $this->Id = $results["UserPermissionId"];
             $this->CanView = $results["CanView"];
             $this->CanCreate = $results["CanCreate"];
             $this->CanUpdate = $results["CanUpdate"];
@@ -63,7 +74,7 @@ class UserPermission extends ActionLog {
     }
 
     public function GetAll() {
-        $stmt = $this->conn->prepare("SELECT * FROM tblUserPermissions");
+        $stmt = $this->conn->prepare("SELECT UP.*, R.RoleName FROM tblUserPermissions UP LEFT JOIN refRoles R ON R.RoleId = UP.RoleId");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -87,11 +98,9 @@ class UserPermission extends ActionLog {
 
             $result = $this->GetByRolePath($roleId, $pagePath);
 
-            //echo "Result={$result["UserPermissionId"]}<br>";
-
             $this->CreateAction('tblUserPermissions', $result["UserPermissionId"], $userId);
 
-            return 1;
+            return $result["UserPermissionId"];
         }
         else
             return 0;

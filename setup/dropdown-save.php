@@ -22,6 +22,9 @@ try {
         case 'relationship':
             $d = new Relationship;
             break;
+        case 'errorlevel':
+            $d = new ErrorLevel;
+            break;
         default:
             header("location:../index.php");
             break;

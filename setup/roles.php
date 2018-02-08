@@ -1,11 +1,14 @@
 <?php 
+$pageName = "User Roles Setup";
+include_once '../inc/permissions.inc.php';
+
 include_once "../inc/sessions.php";
 
-		$pageName = "User Roles Setup";
 
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
+
 
 
 try {

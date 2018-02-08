@@ -3,6 +3,10 @@ include_once "sessions.php";
 
 $bodyClassAdditional = " skin-black sidebar-mini";
 include_once "header-inner.inc.php";
+
+include_once '../classes/classes.php';
+
+$clsUP = new UserPermission;
 ?>
   <div class="wrapper">
   
@@ -374,9 +378,16 @@ include_once "header-inner.inc.php";
               <li id="menuPersonTypes"><a href="<?php echo "{$baseUrl}/setup/dropdown-view.php?type=persontype" ?>"><i class="fa fa-circle-o"></i> Person Types</a></li>
               <li id="menuTitles"><a href="<?php echo "{$baseUrl}/setup/dropdown-view.php?type=title" ?>"><i class="fa fa-circle-o"></i> Titles</a></li>
               <li id="menuRelationships"><a href="<?php echo "{$baseUrl}/setup/dropdown-view.php?type=relationship" ?>"><i class="fa fa-circle-o"></i> Relationships</a></li>
+              <li id="menuErrorLevels"><a href="<?php echo "{$baseUrl}/setup/dropdown-view.php?type=errorlevel" ?>"><i class="fa fa-circle-o"></i> Error Levels</a></li>
               </ul>
           </li>
-          <?php if (isset($_SESSION["RolePriority"]) && $_SESSION["RolePriority"] >= 9000) { ?>
+          <?php //if (isset($_SESSION["RolePriority"]) && $_SESSION["RolePriority"] >= 9000) { 
+            $usersPerm = $clsUP->GetByRolePath($roleId, $baseUrl .'/setup/users.php');
+            $rolesPerm = $clsUP->GetByRolePath($roleId, $baseUrl .'/setup/roles.php');
+            $permsPerm = $clsUP->GetByRolePath($roleId, $baseUrl .'/setup/user-permissions.php');
+
+            if ($usersPerm["CanView"] || $rolesPerm["CanView"] || $permsPerm["CanView"]) {
+            ?>
           <li class="treeview" id="menuUsersRoles">
             <a href="#">
               <i class="fa fa-laptop"></i>
@@ -386,8 +397,9 @@ include_once "header-inner.inc.php";
               </span>
             </a>
             <ul class="treeview-menu">
-              <li id="menuRoles"><a href="<?php echo "{$baseUrl}/setup/roles.php" ?>"><i class="fa fa-circle-o"></i> Roles</a></li>
-              <li id="menuUsers"><a href="<?php echo "{$baseUrl}/setup/users.php" ?>"><i class="fa fa-circle-o"></i> Users</a></li>
+              <?php if ($rolesPerm["CanView"]) { ?><li id="menuRoles"><a href="<?php echo "{$baseUrl}/setup/roles.php" ?>"><i class="fa fa-circle-o"></i> Roles</a></li><?php } ?>
+              <?php if ($usersPerm["CanView"]) { ?><li id="menuUsers"><a href="<?php echo "{$baseUrl}/setup/users.php" ?>"><i class="fa fa-circle-o"></i> Users</a></li><?php } ?>
+              <?php if ($permsPerm["CanView"]) { ?><li id="menuUserPermissions"><a href="<?php echo "{$baseUrl}/setup/user-permissions.php" ?>"><i class="fa fa-circle-o"></i> User Permissions</a></li><?php } ?>
             </ul>
           </li>
           <?php } ?>

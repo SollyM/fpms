@@ -1,23 +1,23 @@
 <?php 
 include_once "../inc/sessions.php";
-
 $pageName = "User Permissions";
+require_once "../inc/permissions.inc.php";
 
 require_once "../inc/header.inc.php";
-require '../classes/classes.php';
+require_once '../classes/classes.php';
 include_once '../inc/config.inc.php';
 
 
 try {
-    $up = new UserPermission;
-    $perms = $up->GetAll();
+    $ups = new UserPermission;
+    $perms = $ups->GetAll();
 ?>
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title"><?php echo $pageName; ?></h3>
-        <button type="button" id="addRole" class="btn btn-primary pull-right">Add New</button>
+        <?php if ($up->CanCreate) { ?><button type="button" id="addNew" class="btn btn-primary pull-right">Add New</button><?php } ?>
       </div>
       <!-- /.box-header -->
       <div class="box-body">        
@@ -27,7 +27,7 @@ try {
               <th class="sorting">Role Name</th>
               <th class="sorting">Page Path</th>
               <th class="sorting">View</th>
-              <th class="sorting">Add</th>
+              <th class="sorting">Create</th>
               <th class="sorting">Update</th>
               <th class="sorting">Delete</th>
               <th class="sorting">Remove</th>
@@ -41,30 +41,46 @@ try {
             
             foreach($perms as $perm) {
 
-            //   $del = "";
-            //   if (isset($_SESSION["RolePriority"]) && $_SESSION["RolePriority"] >= 9000 && $role["DeletedDate"] != NULL) {
-            //       $del = "u";
-            //   }
-            //   elseif (isset($_SESSION["RolePriority"]) && $_SESSION["RolePriority"] >= 9000 && $role["InUse"] == NULL) {
-            //     $del = "d";
-            //   }
-            //   elseif (isset($_SESSION["RolePriority"]) && $_SESSION["RolePriority"] < 9000 && $role["DeletedDate"] != NULL) {
-            //       $del = "s";
-            //   }
-            //   else {
-            //       $del = "";
-            //   }
+                $str = '';
+                if ($perm["DeletedDate"] != NULL) {
+                    if(!$up->CanDelete)
+                        $str = "DELETED";
+                    
+                    if ($up->CanUpdate)
+                        $str = "<a href='#' class='details'>Details</a>";
+                    
+                    if($up->CanDelete)
+                        $str = $str . " | <a href='#' class='undelete'>Undelete</a>";
+                    
+                    if($up->CanRemove)
+                        $str = $str . " | <a href='#' class='remove'>Remove</a>";
+                }
+                else {
+                    if ($up->CanUpdate)
+                        $str = $str . "<a href='#' class='details'>Details</a>";
 
-                echo "<tr data-permid='{$perm["UserPermissionId"]}'>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
-                echo "   <td></td>";
+                    if ($up->CanDelete) {
+                        if ($str != '') $str = $str . " | ";
+                        $str = $str . " <a href='#' class='delete'>Delete</a>";
+                    }
+                }
+
+                echo "<tr data-permid='{$perm["UserPermissionId"]}' data-roleid='{$perm["RoleId"]}'>";
+                echo "   <td>{$perm["RoleName"]}</td>";
+                echo "   <td class='pagePath'>{$perm["PagePath"]}</td>";
+                echo "   <td><input type='checkbox' ". ($perm["CanView"] ? "checked " : "") ."id='chkView'></td>";
+                echo "   <td><input type='checkbox' ". ($perm["CanCreate"] ? "checked " : "") ."id='chkCreate'></td>";
+                echo "   <td><input type='checkbox' ". ($perm["CanUpdate"] ? "checked " : "") ."id='chkUpdate'></td>";
+                echo "   <td><input type='checkbox' ". ($perm["CanDelete"] ? "checked " : "") ."id='chkDelete'></td>";
+                echo "   <td><input type='checkbox' ". ($perm["CanRemove"] ? "checked " : "") ."id='chkRemove'></td>";
+                echo "   <td>{$perm["ErrorLevelId"]}</td>";
+                echo "   <td>";
+                    
+                    if ($str != '')
+                        echo "[ {$str} ]";
+
+                    
+                echo "   </td>";
                 echo "</tr>";
             
             //   echo "<tr data-roleid='".$role["RoleId"]."'>
@@ -98,14 +114,14 @@ try {
           </tbody>
           <tfoot>
             <tr>
-            <th class="sorting">Role Name</th>
-            <th class="sorting">Page Path</th>
-            <th class="sorting">View</th>
-            <th class="sorting">Add</th>
-            <th class="sorting">Update</th>
-            <th class="sorting">Delete</th>
-            <th class="sorting">Remove</th>
-            <th class="sorting">Error Level</th>
+            <th>Role Name</th>
+            <th>Page Path</th>
+            <th>View</th>
+            <th>Create</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Remove</th>
+            <th>Error Level</th>
             <th>Actions</th>
           </tr>
           </tfoot>
@@ -125,35 +141,87 @@ try {
   </div>
   <!-- /.col -->
 </div>
-<div class="modal fade" id="modal-roles">
+<div class="modal fade" id="modal-update">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="roles-save.php">
+            <form method="post" action="user-permissions-save.php">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Create Role</h4>
+                    <h4 class="modal-title">Create User Permission</h4>
                 </div>
                 <div class="modal-body">
                     <div class="box box-warning">
                         <!-- form start -->
                         <div class="box-body">
-                          <input type="hidden" id="roleId" name="roleId" value="0">
-                          <input type="hidden" id="mode" name="mode" value="create">
+                        <input type="hidden" id="userPermissionId" name="userPermissionId" value="0">
+                        <input type="hidden" id="mode" name="mode" value="create">
                             <div class="row">
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="roleName">Role Name</label>
-                                    <input type="text" class="form-control" id="roleName" name="roleName" placeholder="Role Name">
+                                <div class="form-group col-md-4 col-sm-12">
+                                    <label for="roleId">Role Name</label>
+                                    <select class="form-control" name="roleId" id="roleId">
+                                    <?php
+                                        $clsRoles = new Role;
+                                        $roles = $clsRoles->GetAll();
+
+                                        foreach($roles as $role) {
+                                            echo "<option value='{$role["RoleId"]}'>{$role["RoleName"]}</option>";
+                                        }
+                                    ?>
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-3 col-sm-12">
-                                  <label for="rolePriority">Priority</label>
-                                  <input type="text" class="form-control" id="rolePriority" name="rolePriority" placeholder="Priority">
+                                <div class="form-group col-md-8 col-sm-12">
+                                  <label for="pagePath">Page Path</label>
+                                  <input type="text" class="form-control" id="pagePath" name="pagePath" placeholder="Page Path">
                               </div>
-                              <div class="form-group col-md-3 col-sm-12">
-                                  <label for="isActive">Is Active?</label>
-                                  <select class="form-control" name="isActive" id="isActive">
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-md-4 col-sm-6">
+                                  <label for="canView">Can View?</label>
+                                  <select class="form-control" name="canView" id="canView">
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4 col-sm-6">
+                                  <label for="canCreate">Can Create?</label>
+                                  <select class="form-control" name="canCreate" id="canCreate">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4 col-sm-6">
+                                  <label for="canUpdate">Can Update?</label>
+                                  <select class="form-control" name="canUpdate" id="canUpdate">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4 col-sm-6">
+                                  <label for="isActive">Can Delete?</label>
+                                  <select class="form-control" name="canView" id="canView">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4 col-sm-6">
+                                  <label for="isActive">Can Remove?</label>
+                                  <select class="form-control" name="canView" id="canView">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                  </select>
+                              </div>
+                              <div class="form-group col-md-4 col-sm-4">
+                                  <label for="errorLevelId">Error Level</label>
+                                  <select class="form-control" name="errorLevelId" id="errorLevelId">
+                                    <?php 
+                                        $clsEL = new ErrorLevel;
+                                        $els = $clsEL->GetAll();
+
+                                        foreach($els as $el) {
+                                            echo "<option value='{$el["Id"]}'>{$el["Name"]}</option>";
+                                        }
+                                    ?>
                                   </select>
                               </div>
                           </div>
@@ -164,7 +232,7 @@ try {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Cancel</button>
-                    <button id="btnSave" type="submit" class="btn btn-primary">Create Role</button>
+                    <button id="btnSave" type="submit" class="btn btn-primary">Create User Permission</button>
                 </div>
             </form>
         </div>
@@ -204,57 +272,38 @@ try {
 } catch (PDOException $e) {
             
     $err = "Error: " . $e->getMessage();
-            
+    echo $err;
+
 }
 
 $openMenu = true;
 $menuItem = "menuUsersRoles";
-$subMenuItem = "menuRoles";
+$subMenuItem = "menuUserPermissions";
 
 require_once "../inc/footer.inc.php" ?>
 <script>
-$(function () {
-  $('#MainTable').DataTable({
-      'paging'      : true,
-      'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true,
-    'aaSorting' : [[ 1, 'asc']]
-  });
-  $('#MainTable_paginate').addClass("pull-right");
-  $('#MainTable_filter').addClass("pull-right");
-
-  $('#addRole').on('click', function() {
-    $('#modal-roles #roleId').val(0);
-    $('#roleName').val('');
-    $('#rolePriority').val('');
-    $('#isActive').val('');
-    $('#modal-roles #mode').val('create');
-
-    $('#modal-roles').modal("show");
-  });
-
+$(document).ready(function () {
   $('.details').on('click', function() {
     var tr = $(this).closest('tr');
-    var roleid = tr.data('roleid'),
-        rolename = tr.find('.rolename').text(),
-        rolepriority = tr.find('.rolepriority').text(),
-        isactive = tr.find('.isactive').text();
+    var roleId = tr.data('roleid'),
+        userPermissionId = tr.data('permid'),
+        pagePath = tr.find('.pagePath').text(),
+        canView = tr.find('checkbox:chkView').is('checked');
+        console.log('CanView='+canView);
 
-    $('#modal-roles #roleId').val(roleid);
-    $('#roleName').val(rolename);
-    $('#rolePriority').val(rolepriority);
-    $("#isActive").find("option:contains("+isactive+")").each(function() {
-      var $this = $(this).val();
-      $("#isActive").val($this);
-    });
-    $('#modal-roles #mode').val('update');
+    $('#modal-update #userPermissionId').val(userPermissionId);
+    $('#modal-update #roleId').val(roleId);
+    $('#pagePath').val(pagePath);
+    //$('#rolePriority').val(rolepriority);
+    ///$("#isActive").find("option:contains("+isactive+")").each(function() {
+    //  var $this = $(this).val();
+    //  $("#isActive").val($this);
+    //});
+    $('#modal-update #mode').val('update');
 
-    $('#modal-roles #btnSave').text("Save Role");
-    $('#modal-roles').find("h4").text("Edit Role");
-    $('#modal-roles').modal('show');
+    $('#modal-update #btnSave').text("Save User Permission");
+    $('#modal-update').find("h4").text("Edit User Permission");
+    $('#modal-update').modal('show');
   });
 
   $('.delete').on("click", function() {
@@ -271,7 +320,7 @@ $(function () {
     $('#modal-roles-delete').modal("show");
     });
 
-  $('.undelete').on("click", function() {
+    $('.undelete').on("click", function() {
     var tr = $(this).closest('tr');
     var pid = tr.data('roleid'),
         pname = tr.find('.rolename').text();
@@ -297,6 +346,28 @@ $(function () {
     $('#modal-roles-delete').find("h4").text("Remove Role");
     $('#modal-roles-delete #btnSave').text("Remove");
     $('#modal-roles-delete').modal("show");
+  });
+
+  $('#MainTable').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true,
+    'aaSorting' : [[ 0, 'asc'], [ 1, 'asc']]
+  });
+  $('#MainTable_paginate').addClass("pull-right");
+  $('#MainTable_filter').addClass("pull-right");
+
+  $('#addNew').on('click', function() {
+    $('#modal-update #roleId').val(0);
+    $('#pagePath').val('');
+    $('#rolePriority').val('');
+    $('#isActive').val('');
+    $('#modal-update #mode').val('create');
+
+    $('#modal-update').modal("show");
   });
 });
 </script>
